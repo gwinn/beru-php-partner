@@ -3,10 +3,12 @@
 namespace Yandex\Beru\Partner\Clients;
 
 use Yandex\Beru\Partner\Models\SetExternalOrderIdRequest;
+use Yandex\Beru\Partner\Models\Response\GetUpdateOrderResponse;
 use Yandex\Beru\Partner\Models\Response\GetInfoOrderBoxesResponse;
 use Yandex\Beru\Partner\Models\Response\GetOrdersResponse;
 use Yandex\Beru\Partner\Models\Response\GetOrderResponse;
 use Yandex\Beru\Partner\Models\Response\SetExternalOrderIdResponse;
+use Yandex\Beru\Partner\Models\Response\GetDeliveryServiceResponse;
 
 class OrderProcessingClient extends Client
 {
