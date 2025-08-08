@@ -9,6 +9,7 @@ use Yandex\Beru\Partner\Models\Response\GetOrdersResponse;
 use Yandex\Beru\Partner\Models\Response\GetOrderResponse;
 use Yandex\Beru\Partner\Models\Response\SetExternalOrderIdResponse;
 use Yandex\Beru\Partner\Models\Response\GetDeliveryServiceResponse;
+use Yandex\Beru\Partner\Models\Response\GetRefundResponse;
 
 class OrderProcessingClient extends Client
 {
@@ -253,5 +254,29 @@ class OrderProcessingClient extends Client
         );
 
         return new SetExternalOrderIdResponse($this->getDecodedBody($response->getBody()));
+    }
+
+    /**
+     * Get a refund by ID
+     *
+     * @see https://yandex.ru/dev/market/partner-api/doc/ru/reference/orders/getReturns
+     *
+     * @param int|string $campaignId
+     * @param int|string $orderId
+     * @param int|string $refundId
+     * @return \Yandex\Beru\Partner\Models\Response\GetRefundResponse
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Yandex\Beru\Partner\Exception\PartnerRequestException
+     * @throws \Yandex\Common\Exception\ForbiddenException
+     * @throws \Yandex\Common\Exception\UnauthorizedException
+     */
+    public function getRefund($campaignId, $orderId, $refundId)
+    {
+        $resource = 'campaigns/' . $campaignId . '/orders/' . $orderId . '/returns/' . $refundId . '.json';
+
+        $response = $this->sendRequest('GET', $this->getServiceUrl($resource));
+        $decodedResponseBody = $this->getDecodedBody($response->getBody());
+
+        return new GetRefundResponse($decodedResponseBody);
     }
 }
