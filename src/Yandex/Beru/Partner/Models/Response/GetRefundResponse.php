@@ -7,17 +7,29 @@ use Yandex\Beru\Partner\Models\Refund;
 
 class GetRefundResponse extends Model
 {
-    protected $refund;
+    /** @var Refund */
+    protected $result;
 
+    /** @var array */
     protected $mappingClasses = [
-        'result' => 'Yandex\Beru\Partner\Models\Refund',
+        'result' => Refund::class,
     ];
 
     /**
-     * @return Refund
+     * @return Refund|null
      */
-    public function getRefund()
+    public function getResult()
     {
-        return $this->refund;
+        return $this->result;
+    }
+
+    /**
+     * @param Refund|array|null $value
+     * @return $this
+     */
+    public function setResult($value)
+    {
+        $this->result = is_array($value) ? new Refund($value) : $value;
+        return $this;
     }
 }
