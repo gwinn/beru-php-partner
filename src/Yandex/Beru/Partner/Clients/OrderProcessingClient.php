@@ -257,26 +257,12 @@ class OrderProcessingClient extends Client
     }
 
     /**
-     * Get a refund by ID
-     *
-     * @see https://yandex.ru/dev/market/partner-api/doc/ru/reference/orders/getReturns
-     *
-     * @param int|string $campaignId
-     * @param int|string $orderId
-     * @param int|string $refundId
-     * @return \Yandex\Beru\Partner\Models\Response\GetRefundResponse
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Yandex\Beru\Partner\Exception\PartnerRequestException
-     * @throws \Yandex\Common\Exception\ForbiddenException
-     * @throws \Yandex\Common\Exception\UnauthorizedException
+     * @deprecated Use RefundClient::getRefund instead
      */
     public function getRefund($campaignId, $orderId, $refundId)
     {
-        $resource = 'campaigns/' . $campaignId . '/orders/' . $orderId . '/returns/' . $refundId . '.json';
-
-        $response = $this->sendRequest('GET', $this->getServiceUrl($resource));
-        $decodedResponseBody = $this->getDecodedBody($response->getBody());
-
-        return new GetRefundResponse($decodedResponseBody);
+        @trigger_error(__METHOD__.' is deprecated, use RefundClient::getRefund()', E_USER_DEPRECATED);
+        $client = new RefundClient();
+        return $client->getRefund($campaignId, $orderId, $refundId);
     }
 }

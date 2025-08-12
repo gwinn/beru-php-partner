@@ -11,10 +11,12 @@ class RefundItem extends Model
     protected $count;
     protected $instances;
     protected $tracks;
+    protected $decisions;
 
     protected $mappingClasses = array(
         'instances' => Instances::class,
         'tracks'    => Tracks::class,
+        'decisions' => RefundDecisions::class,
     );
 
     /**
@@ -104,6 +106,24 @@ class RefundItem extends Model
     public function setTracks($value)
     {
         $this->tracks = is_array($value) ? new Tracks($value) : $value;
+        return $this;
+    }
+
+    /**
+     * @return RefundDecisions|null
+     */
+    public function getDecisions()
+    {
+        return $this->decisions;
+    }
+
+    /**
+     * @param RefundDecisions|array|null $value
+     * @return $this
+     */
+    public function setDecisions($value)
+    {
+        $this->decisions = is_array($value) ? new RefundDecisions($value) : $value;
         return $this;
     }
 }

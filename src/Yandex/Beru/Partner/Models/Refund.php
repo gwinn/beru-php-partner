@@ -27,9 +27,6 @@ class Refund extends Model
     /** @var string|null */
     protected $shipmentStatus;
 
-    /** @var string|float|null */
-    protected $refundAmount;
-
     /** @var Amount|null */
     protected $amount;
 
@@ -169,24 +166,6 @@ class Refund extends Model
     public function setShipmentStatus($value)
     {
         $this->shipmentStatus = $value;
-        return $this;
-    }
-
-    /**
-     * @return string|float|null
-     */
-    public function getRefundAmount()
-    {
-        return $this->refundAmount;
-    }
-
-    /**
-     * @param string|float|null $value
-     * @return $this
-     */
-    public function setRefundAmount($value)
-    {
-        $this->refundAmount = $value;
         return $this;
     }
 
