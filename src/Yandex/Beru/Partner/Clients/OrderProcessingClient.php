@@ -255,14 +255,4 @@ class OrderProcessingClient extends Client
 
         return new SetExternalOrderIdResponse($this->getDecodedBody($response->getBody()));
     }
-
-    /**
-     * @deprecated Use RefundClient::getRefund instead
-     */
-    public function getRefund($campaignId, $orderId, $refundId)
-    {
-        @trigger_error(__METHOD__.' is deprecated, use RefundClient::getRefund()', E_USER_DEPRECATED);
-        $client = new RefundClient();
-        return $client->getRefund($campaignId, $orderId, $refundId);
-    }
 }
